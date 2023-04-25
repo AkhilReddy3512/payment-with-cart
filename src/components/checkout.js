@@ -38,9 +38,12 @@ function Checkout() {
         { id: 5, name: "Product5", amount: 100 },
     ]);
 
+   // localStorage.setItem("Products", JSON.stringify([]))
+
     const [cartItems, setCartItems] = useState([]);
     const [totalAmount, setTotalAmount] = useState(0);
     const [phoneNumber, setPhoneNumber] = useState('+91');
+    const [phoneSubmitted, setPhoneSubmitted] = useState(false);
 
     let label = {
         'Product1': null,
@@ -123,6 +126,7 @@ function Checkout() {
 
     function handleSubmit(event) {
         event.preventDefault();
+        setPhoneSubmitted(true);
         console.log('Submitting phone number: ', phoneNumber);
     }
 
@@ -201,6 +205,23 @@ function Checkout() {
         <div>
             <ToastContainer autoClose={4000} position="top-center" pauseOnHover={false} closeOnClick theme="colored" />
             <div className='container-main'>
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        Phone Number: <br />
+                        <input type="tel" value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} />
+                        {/* <input type="tel" /> */}
+                    </label>
+                    <button type="submit">Submit</button>
+                </form>
+                <ul>
+                <h2>Available Products</h2>
+                    {products.map((product) => (
+                        <li key={product.id}>
+                            {product.name} - ₹ {product.amount}
+                            {phoneSubmitted && <button onClick={() => addToCart(product)}>Add to Package</button>}
+                        </li>
+                    ))}
+                </ul>
                 <h2>My Package</h2>
                 {cartItems.length === 0 ? (
                     <p>No items in your package, Check our products</p>
@@ -221,23 +242,6 @@ function Checkout() {
                         <hr />
                     </div>
                 }
-                <h2>Available Products</h2>
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Phone Number: <br />
-                        <input type="tel" value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} />
-                        {/* <input type="tel" /> */}
-                    </label>
-                    <button type="submit">Submit</button>
-                </form>
-                <ul>
-                    {products.map((product) => (
-                        <li key={product.id}>
-                            {product.name} - ₹ {product.amount}
-                            <button onClick={() => addToCart(product)}>Add to Package</button>
-                        </li>
-                    ))}
-                </ul>
             </div>
         </div>
     )

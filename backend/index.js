@@ -13,29 +13,6 @@ const razorpay = new Razorpay({
 	key_secret: 'Iwp4D2SXeCLbCYsQyozAKH4z'
 })
 
-app.post('/verification', (req, res) => {
-	// do a validation
-	const secret = '12345678'
-
-	console.log(req.body)
-
-	const crypto = require('crypto')
-
-	const shasum = crypto.createHmac('sha256', secret)
-	shasum.update(JSON.stringify(req.body))
-	const digest = shasum.digest('hex')
-
-	console.log(digest, req.headers['x-razorpay-signature'])
-
-	if (digest === req.headers['x-razorpay-signature']) {
-		console.log('request is legit')
-		// process it
-		require('fs').writeFileSync('payment1.json', JSON.stringify(req.body, null, 4))
-	} else {
-		// pass it
-	}
-	res.json({ status: 'ok' })
-})
 
 app.post('/razorpay', async (req, res) => {
 	console.log(req.body.amount)
@@ -60,6 +37,27 @@ app.post('/razorpay', async (req, res) => {
 	} catch (error) {
 		console.log(error)
 	}
+})
+
+app.post('/verification', (req, res) => {
+	// do a validation
+
+	const secret = 'Iwp4D2SXeCLbCYsQyozAKH4z'
+	console.log(req.body)
+	const crypto = require('crypto')
+	const shasum = crypto.createHmac('sha256', secret)
+	shasum.update(JSON.stringify(req.body))
+	const digest = shasum.digest('hex')
+	console.log(digest, req.headers['x-razorpay-signature'])
+	if (digest === req.headers['x-razorpay-signature']) {
+		console.log('request is legit')
+		// process it
+
+		require('fs').writeFileSync('payment1.json', JSON.stringify(req.body))
+	} else {
+		// pass it
+	}
+	res.json({ status: 'ok' })
 })
 
 app.listen(1337, () => {

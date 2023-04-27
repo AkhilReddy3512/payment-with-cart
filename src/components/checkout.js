@@ -14,6 +14,7 @@ const month = oneYearFromNow.getMonth() + 1;
 const day = oneYearFromNow.getDate();
 const year = oneYearFromNow.getFullYear();
 const formattedDate = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`;
+localStorage.setItem('Products',JSON.stringify([]))
 
 function loadScript(src) {
     return new Promise((resolve) => {
@@ -96,7 +97,7 @@ function Checkout() {
         }).firstPage(async (err, records) => {
             if (err) {
                 console.error(err);
-                return;
+                return false;
             }
             if (records.length > 0) {
                 console.log(records)
@@ -124,10 +125,11 @@ function Checkout() {
     };
     const navigate = useNavigate();
 
-    function handleSubmit(event) {
+    const handleSubmit=async(event)=>{
         event.preventDefault();
         setPhoneSubmitted(true);
         console.log('Submitting phone number: ', phoneNumber);
+    serachrecord(phoneNumber)
     }
 
     async function displayRazorpay() {
@@ -156,7 +158,8 @@ function Checkout() {
             image: 'https://www.arm.com/-/media/global/Why%20Arm/partner/Partner%20Ecosystem/ai-catalog/reality-ai/reality-ai-logo.png?rev=03b4e9975e1540cf8141d72d011981f0&revision=03b4e997-5e15-40cf-8141-d72d011981f0',
 
             handler: async function (response) {
-                if (serachrecord(phoneNumber)) {
+            
+                if ((JSON.parse(localStorage.getItem('Products')).length!==0)) {
                     for (var i = 0; i < cartItems.length; i++) {
                         label[cartItems[i].name] = formattedDate;
                     }

@@ -223,19 +223,19 @@ function Checkout() {
     };
     return (
         <>
-            <nav class="navbar sticky navbar-light bg-light justify-content-between">
-                <href class="text1 text3"><b>RealtyAi</b></href>
+            <nav className="navbar sticky navbar-light bg-light justify-content-between">
+                <href className="text1 text3"><b>RealtyAi</b></href>
             </nav>
-            <div style={{ margin: "1rem" }} class="text-center">
-                <div class="row">
-                    <div class="col">
+            <div style={{ margin: "1rem" }} className="text-center">
+                <div className="row">
+                    <div className="col">
                         <center>
                             <img style={{ marginTop: "10vw", marginBottom: "2vw", height: "65vw", maxHeight:"425px"}} src="Group13393.jpg" alt="buy now" />
                         </center>
                     </div>
-                    <div style={{ backgroundColor: "rgb(62, 196, 249)", color: "white" }} class="col">
+                    <div style={{ backgroundColor: "rgb(62, 196, 249)", color: "white" }} className="col">
                         <div>
-                            <div class="line"></div>
+                            <div className="line"></div>
                             <ToastContainer autoClose={4000} position="top-center" pauseOnHover={false} closeOnClick theme="colored" />
                             <div className='container-main'>
                             <h4 style={{ textAlign:"left",marginLeft:"15vw"}}> Enter Mobile Number</h4>
@@ -252,13 +252,13 @@ function Checkout() {
 
                                     {products.map((product) => (
 
-                                        <div class="dropdown" key={product.id}>
-                                            <button style={{ width: "50%", margin: "3px" }} class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <div className="dropdown" key={product.id}>
+                                            <button style={{ width: "50%", margin: "3px" }} className="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 {product.name}
                                             </button>
-                                            <ul style={{ width: "50%" }} class="dropdown-menu">
-                                                <li><div class="dropdown-item" >{product.name} - ₹ {product.amount}</div></li>
-                                                <li><div class="dropdown-item" >{phoneSubmitted && <button style={{ width: "100%", marginLeft: "0px" }} className="btn btn-outline-info" onClick={() => addToCart(product)}>Add to Package</button>}</div></li>
+                                            <ul style={{ width: "50%" }} className="dropdown-menu">
+                                                <li><div className="dropdown-item" >{product.name} - ₹ {product.amount}</div></li>
+                                                <li><div className="dropdown-item" >{phoneSubmitted && <button style={{ width: "100%", marginLeft: "0px" }} className="btn btn-outline-info" onClick={() => addToCart(product)}>Add to Package</button>}</div></li>
                                             </ul>
                                         </div>
                                     ))}

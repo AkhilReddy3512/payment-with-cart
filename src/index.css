@@ -11,7 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-button {
+/* button {
   color: #fff;
   background-color: #000;
   border:none;
@@ -42,6 +42,6 @@ button {
 
 .my-button:hover {
   background-color:rgb(18, 104, 18);
-}
+} */
 
 

@@ -16,7 +16,7 @@ const Success = () => {
             <h2>Thanks for purchasing the Product!</h2>
             <p>Payment ID: {paymentId}</p>
             <p>Order ID: {orderId}</p>
-            <Link className="my-button" to="http://localhost:3001/" role="button" target='_blank'>Go Back to Home Page</Link>
+            <Link className="btn btn-secondary" to="https://otp-login-b8ec1.firebaseapp.com/" role="button" target='_blank'>Go Back to Home Page</Link>
         </div>
     );
 };

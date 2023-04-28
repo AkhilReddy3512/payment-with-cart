@@ -1,39 +1,50 @@
-.App {
-  text-align: center;
+/* .App {
+  background-image: url("C:\Users\snigd\OneDrive\Desktop\REACT\comparision\shutterstock_743599006-1200x800.jpg");
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.App:hover{
+  background-image: url("C:\Users\snigd\OneDrive\Desktop\REACT\comparision\shutterstock_743599006-1200x800.jpg");
+} */
+.text{
+  padding-left: 6%;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   color: white;
+  max-width: 50%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 3rem;
 }
-
-.App-link {
-  color: #61dafb;
+li{
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.text1{
+  color: rgb(119, 216, 255);
+  font-size: 100%;
 }
-
+.center{
+  width:100%;
+}
+.line {
+  margin: 8vw 25px;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.text2{
+  color: rgb(62, 196, 249);
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 150%;
+  margin-right: 4%;
+}
+.text3{
+  padding-left: 6%;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 150%;
+}
+.btn1{
+  margin-left: 6%;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}

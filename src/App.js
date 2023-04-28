@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Checkout from "./components/checkout";
 import Success from "./components/Success";
 import Failure from './components/Failure';
+import "./App.css"
 
 const App = () => {
   return (

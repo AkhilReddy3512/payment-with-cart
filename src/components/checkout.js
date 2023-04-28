@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
 
 var Airtable = require('airtable');
 var base = new Airtable({ apiKey: 'pathtvro7iNxp5yYN.69817a21c94ed77c049dca2361983216550ee535881f255333ebde130d41f299' }).base('appmLtIK7oUkAerdO');
@@ -31,6 +33,10 @@ function loadScript(src) {
 }
 
 function Checkout() {
+    
+const [open1, setOpen1] = useState(false);
+const handleOpen = () => setOpen1(true);
+const handleClose = () => setOpen1(false);
     const [products] = useState([
         { id: 1, name: "Product1", amount: 100 },
         { id: 2, name: "Product2", amount: 100 },
@@ -139,7 +145,7 @@ function Checkout() {
             toast.error('Razorpay SDK failed to load. Are you online?')
             return
         }
-        const data = await fetch(`http://localhost:1337/razorpay`, {
+        const data = await fetch(`https://rose-modern-cobra.cyclic.app/razorpay`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -204,49 +210,101 @@ function Checkout() {
         });
         paymentObject.open();
     }
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+         p: 4,
+      };
     return (
-        <div>
+        <>
+        <nav class="navbar sticky navbar-light bg-light justify-content-between">
+    <href class="text1 text3"><b>RealtyAi</b></href>
+    </nav>
+    <div style={{margin:"1rem"}} class="text-center">
+  <div class="row">
+    <div class="col">
+    <center>
+        <img style={{marginTop:"10vw",marginBottom:"2vw", height:"30vw", }} src="Group13393.jpg" alt="buy now"/>
+      </center>
+    </div>
+    <div style={{backgroundColor:"rgb(62, 196, 249)",color:"white"}} class="col">
+    <div>
+        <div class="line"></div>
             <ToastContainer autoClose={4000} position="top-center" pauseOnHover={false} closeOnClick theme="colored" />
             <div className='container-main'>
                 <form onSubmit={handleSubmit}>
                     <label>
-                        Phone Number: <br />
-                        <input type="tel" value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} />
+                        Phone Number: 
+                        <input type="tel" style={{margin:"2vw"}} value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} />
                         {/* <input type="tel" /> */}
                     </label>
-                    <button type="submit">Submit</button>
+                    <button className="btn btn-outline-light" type="submit">Submit</button>
                 </form>
                 <ul>
-                <h2>Available Products</h2>
-                    {products.map((product) => (
-                        <li key={product.id}>
-                            {product.name} - ₹ {product.amount}
-                            {phoneSubmitted && <button onClick={() => addToCart(product)}>Add to Package</button>}
-                        </li>
-                    ))}
+                <h2>Available Products</h2>  
+
+    {products.map((product) => (
+
+<div class="dropdown" key={product.id}>
+<button style={{width:"80%", marginLeft:"0px"}} class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+{product.name}
+  </button>
+  <ul style={{width:"80%"}} class="dropdown-menu">
+    <li><div class="dropdown-item" >{product.name} - ₹ {product.amount}</div></li>
+    <li><div class="dropdown-item" >{phoneSubmitted && <button style={{width:"100%",marginLeft:"0px"}} className="btn btn-outline-info"  onClick={() => addToCart(product)}>Add to Package</button>}</div></li>
+  </ul>
+ </div>
+                    ))}  
                 </ul>
-                <h2>My Package</h2>
-                {cartItems.length === 0 ? (
+      <button style={{width:"50%"}} className="btn btn-light"  onClick={handleOpen}>View Cart</button>
+      <Modal
+        open={open1}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box style={{ borderRadius:"5%", backgroundColor:"rgb(3, 129, 178)", color:"white",borderColor:"white" }} sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <h5>My Package</h5>
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          {cartItems.length === 0 ? (
                     <p>No items in your package, Check our products</p>
                 ) : (
                     <ul>
                         {cartItems.map((item) => (
                             <li key={item.id}>
                                 {item.name} - ₹ {item.amount}
-                                <button onClick={() => removeCartItem(item)}>Remove</button>
+                                <button className="btn btn-outline-light" onClick={() => removeCartItem(item)}>Remove</button>
                             </li>
                         ))}
                     </ul>
                 )}
+          </Typography>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            <hr/>
                 {totalAmount > 0 &&
                     <div>
                         <p>Total amount: ₹ {totalAmount}</p>
-                        <button onClick={displayRazorpay}>Proceed to Payment</button>
-                        <hr />
+                        <center><button style={{width:"90%", paddingLeft:"0px"}} className="btn btn-outline-light" onClick={displayRazorpay}>Proceed to Payment</button></center>
                     </div>
                 }
+          </Typography>
+        </Box>
+      </Modal>
+    </div>
             </div>
         </div>
+    </div>
+  </div>
+
+  </>
     )
 }
 

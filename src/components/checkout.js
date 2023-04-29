@@ -224,13 +224,13 @@ function Checkout() {
     return (
         <>
             <nav className="navbar sticky navbar-light bg-light justify-content-between">
-                <href className="text1 text3"><b>RealtyAi</b></href>
+                <h1 className="text1 text3"><b>RealtyAi</b></h1>
             </nav>
             <div style={{ margin: "1rem" }} className="text-center">
                 <div className="row">
                     <div className="col">
                         <center>
-                            <img style={{ marginTop: "10vw", marginBottom: "2vw", height: "65vw", maxHeight:"425px"}} src="Group13393.jpg" alt="buy now" />
+                            <img style={{ marginTop: "10vw", marginBottom: "2vw", height: "65vw", maxHeight: "425px" }} src="Group13393.jpg" alt="buy now" />
                         </center>
                     </div>
                     <div style={{ backgroundColor: "rgb(62, 196, 249)", color: "white" }} className="col">
@@ -238,32 +238,31 @@ function Checkout() {
                             <div className="line"></div>
                             <ToastContainer autoClose={4000} position="top-center" pauseOnHover={false} closeOnClick theme="colored" />
                             <div className='container-main'>
-                            <h4 style={{ textAlign:"left",marginLeft:"15vw"}}> Enter Mobile Number</h4>
+                                <h4 style={{ textAlign: "center", marginLeft: "1vw" }}><i>Enter Registered Mobile No. <br></br>to Buy Products</i></h4>
                                 <form onSubmit={handleSubmit}>
                                     <label>
-                                    
                                         <input type="tel" style={{ margin: "2vw" }} value={phoneNumber} onChange={(event) => setPhoneNumber(event.target.value)} />
                                         {/* <input type="tel" /> */}
                                     </label>
-                                    <button className="btn btn-outline-light" type="submit">Submit</button>
+                                    <button className="btn btn-outline-light" type="submit" disabled={phoneNumber.length < 13}>Submit</button>
                                 </form>
                                 <ul>
                                     <h2>Available Products</h2>
 
                                     {products.map((product) => (
 
-                                        <div className="dropdown" key={product.id}>
+                                        <div className="dropdown" key={product.id} style={{ position: "relative" }}>
                                             <button style={{ width: "50%", margin: "3px" }} className="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 {product.name}
                                             </button>
-                                            <ul style={{ width: "50%" }} className="dropdown-menu">
+                                            <ul className="dropdown-menu">
                                                 <li><div className="dropdown-item" >{product.name} - ₹ {product.amount}</div></li>
-                                                <li><div className="dropdown-item" >{phoneSubmitted && <button style={{ width: "100%", marginLeft: "0px" }} className="btn btn-outline-info" onClick={() => addToCart(product)}>Add to Package</button>}</div></li>
+                                                <li><div className="dropdown-item" ><div className="d-flex justify-content-center my-2">{phoneSubmitted && <button style={{ width: "100%", padding: "5px", margin: "5px 0" }} className="btn btn-outline-info" onClick={() => addToCart(product)}>Add to Package</button>}</div></div></li>
                                             </ul>
                                         </div>
                                     ))}
                                 </ul>
-                                <button style={{ width: "60%" , marginLeft:"4%", marginTop:"2vw", marginBottom:"6vw"}} className="btn btn-light" onClick={handleOpen}>View Cart</button>
+                                <button style={{ width: "60%", marginLeft: "4%", marginTop: "2vw", marginBottom: "6vw" }} className="btn btn-light" onClick={handleOpen}>View Package</button>
                                 <Modal
                                     open={open1}
                                     onClose={handleClose}
@@ -282,7 +281,7 @@ function Checkout() {
                                                     {cartItems.map((item) => (
                                                         <li key={item.id}>
                                                             {item.name} - ₹ {item.amount}
-                                                            <button className="btn btn-outline-light" style={{marginLeft:"3%"}} onClick={() => removeCartItem(item)}>Remove</button>
+                                                            <button className="btn btn-outline-light" style={{ marginLeft: "3%", margin: "3px" }} onClick={() => removeCartItem(item)}>Remove</button>
                                                         </li>
                                                     ))}
                                                 </ul>

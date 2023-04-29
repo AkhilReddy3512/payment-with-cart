@@ -51,3 +51,9 @@ li{
   margin-top: 10px;
   margin-bottom: 40px;
 }
+
+.dropdown-menu{
+  width: 60%;
+  position: absolute;
+  margin-left: -5%;
+}

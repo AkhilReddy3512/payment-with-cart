@@ -257,7 +257,7 @@ function Checkout() {
                                             </button>
                                             <ul className="dropdown-menu">
                                                 <li><div className="dropdown-item" >{product.name} - ₹ {product.amount}</div></li>
-                                                <li><div className="dropdown-item" ><div className="d-flex justify-content-center my-2">{phoneSubmitted && <button style={{ width: "100%", padding: "5px", margin: "5px 0" }} className="btn btn-outline-info" onClick={() => addToCart(product)}>Add to Package</button>}</div></div></li>
+                                                <li><div className="dropdown-item" ><div className="d-flex justify-content-center my-2">{phoneSubmitted && <button style={{ width: "100%", padding: "5px", margin: "5px 0" }} className="btn btn-outline-info" onClick={() => addToCart(product)}>Add to cart</button>}</div></div></li>
                                             </ul>
                                         </div>
                                     ))}

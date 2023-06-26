@@ -32,7 +32,7 @@ const Success = () => {
             <h2 style={{marginTop:"5px", marginBottom:"5px"}}>Thanks for purchasing the Product!</h2>
             <p style={paragraphStyles}>Payment ID: {paymentId}</p>
             <p style={paragraphStyles}>  Order ID: {orderId}</p>
-            <Link className="btn btn-success" to="https://otp-login-b8ec1.firebaseapp.com/" role="button" >Go Back to Home Page</Link>
+            <Link className="btn btn-success" to="https://otp-login-b8ec1.firebaseapp.com/display" role="button" >Go Back to Home Page</Link>
             <p style={{marginTop:"3%"}}><i>Take Screenshot for further reference</i></p>
         </div>
     );
